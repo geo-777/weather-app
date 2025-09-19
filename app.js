@@ -47,26 +47,31 @@ async function setWeather(lat, long) {
 }
 async function getGeo() {
   try {
-    const response = await fetch("http://ip-api.com/json/");
+    const response = await fetch("https://ipwhois.app/json/");
+    // or: https://ipwhois.io/json/
+    // Check the correct base URL and response format
 
     if (!response.ok) {
       if (response.status === 404) throw new Error("Data not found");
       else if (response.status === 500) throw new Error("Server Error");
-      else throw new Error("Network was not okay");
+      else throw new Error("Network response was not OK");
     }
+
     const data = await response.json();
-    if (data.status !== "success") {
+    // ipwhois.io returns success flag, etc. Modify checks as per its schema.
+    if (data.success === false) {
       throw new Error(`API error: ${data.message || "Unknown error"}`);
     }
+
     console.log("Geo data:", data);
-    await setWeather(data.lat, data.lon);
+    await setWeather(data.latitude, data.longitude);
     weatherPanel.classList.remove("hidden");
 
     wpLoader.classList.add("hidden");
     wpDate.textContent = formattedDate;
     wpLocation.textContent = `${data.city}, ${data.country}`;
   } catch (err) {
-    console.log(err);
+    console.error("getGeo error:", err);
     return null;
   }
 }
