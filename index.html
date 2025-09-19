@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Now</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/512/3845/3845731.png"
+    />
+  </head>
+  <body>
+    <main class="main-container">
+      <nav>
+        <div class="nav-logo-container">
+          <img src="assets/images/logo.svg" class="logo-nav" alt="logo" />
+        </div>
+        <div class="dropdown-main">
+          <div class="nav-drop-container" id="drop-btn-unit">
+            <img
+              src="assets/images/icon-units.svg"
+              alt="Units button"
+              class="unit-settings-btn-img"
+            />
+            <p class="drop-text">Units</p>
+            <img
+              src="assets/images/icon-dropdown.svg"
+              class="unit-drop-btn-img"
+              alt=""
+            />
+          </div>
+          <div id="units-drop-active" class="drop-active hidden">
+            <div class="imp-metric drop-item-container">
+              <div class="drop-btn">
+                <p>Switch to imperial</p>
+              </div>
+            </div>
+            <div class="drop-item-container">
+              <p class="drop-label">Temperature</p>
+              <div id="celcius-btn" class="drop-btn">
+                <p>Celcius</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+              <div id="faren-btn" class="drop-btn">
+                <p>Farenheight</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+              <hr />
+            </div>
+            <div class="drop-item-container">
+              <p class="drop-label">Wind speed</p>
+              <div id="kmh-btn" class="drop-btn">
+                <p>km/h</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+              <div id="mph-btn" class="drop-btn">
+                <p>mp/h</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+              <hr />
+            </div>
+            <div class="drop-item-container">
+              <p class="drop-label">Precipitation</p>
+              <div id="mm-btn" class="drop-btn">
+                <p>mm</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+              <div id="in-btn" class="drop-btn">
+                <p>in</p>
+                <img
+                  class="hidden"
+                  src="assets/images/icon-checkmark.svg"
+                  alt="check-mark"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="header-container">
+        <h1>How's the sky looking today?</h1>
+        <div class="search-widget-container">
+          <div class="search-bar-container">
+            <div class="search-bar">
+              <img src="assets/images/icon-search.svg" alt="" />
+              <input
+                type="text"
+                name="search"
+                id="search-input-field"
+                placeholder="Search for a place..."
+              />
+            </div>
+            <div class="search-active hidden">
+              <div class="search-result-item">
+                <p>City Name</p>
+              </div>
+              <div class="search-result-item">
+                <p>City Name</p>
+              </div>
+              <div class="search-result-item">
+                <p>City Name</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="search-btn">Search</button>
+        </div>
+      </div>
+
+      <div class="app-container">
+        <div class="left">
+          <div class="weather-panel hidden" id="weather-panel">
+            <!-- <picture class="background">
+              <source
+                srcset="assets/images/bg-today-large.svg"
+                media="(min-width: 500px)"
+              />
+
+              <source
+                srcset="assets/images/bg-today-small.svg"
+                media="(max-width: 499px)"
+              />
+              <img
+                src="assets/images/bg-today-large.svg"
+                alt="Weather background"
+              />
+            </picture> -->
+
+            <div class="wp-info">
+              <p id="wp-location">Berlin, Germany</p>
+              <p id="wp-date">Tuesday, Aug 5, 2025</p>
+            </div>
+            <div class="wp-temp-info">
+              <img
+                src="assets/images/icon-sunny.webp"
+                alt="weather icon"
+                id="wp-temp-icon"
+              />
+              <p id="wp-temp">68&deg</p>
+            </div>
+          </div>
+          <div class="loading-weather-panel" id="loading-weather-panel">
+            <img src="assets/images/icon-loading.svg" alt="loading icon" />
+            <p>Loading...</p>
+          </div>
+
+          <div class="extra-info-panel">
+            <div class="eip-item">
+              <p>Feels Like</p>
+              <p id="wp-feelslike">_</p>
+            </div>
+            <div class="eip-item">
+              <p>Humidity</p>
+              <p id="wp-humidity">_</p>
+            </div>
+            <div class="eip-item">
+              <p>Wind</p>
+              <p id="wp-wind">_</p>
+            </div>
+            <div class="eip-item">
+              <p>Precipitation</p>
+              <p id="wp-precipitation">_</p>
+            </div>
+          </div>
+
+          <div class="daily-forecast-panel">
+            <p>Daily Forecast</p>
+            <div class="loading-weather-panel" id="loading-daily-panel">
+              <img src="assets/images/icon-loading.svg" alt="loading icon" />
+              <p>Loading...</p>
+            </div>
+            <div class="forecast-grid hidden">
+              <div class="forecast-item">
+                <p>Mon</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-fog.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Tues</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-drizzle.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Wed</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-sunny.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Thurs</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-partly-cloudy.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Fri</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-rain.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Sat</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-storm.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+              <div class="forecast-item">
+                <p>Sun</p>
+                <img
+                  class="forecast-icon-items"
+                  src="assets/images/icon-fog.webp"
+                  alt="weather icon"
+                />
+                <div class="forecast-temp-cont">
+                  <p>68&deg</p>
+                  <p>75&deg</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="right-header">
+            <h3>Hourly Forecast</h3>
+          </div>
+
+          <!-- <div class="hourly-item">
+            <div class="hourly-item-info">
+              <img src="assets/images/icon-drizzle.webp" alt="weather icon" />
+              <p>3 PM</p>
+            </div>
+            <p class="hourly-item-temp">68&deg;</p>
+          </div> -->
+        </div>
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/b2b38c8dfd.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="app.js"></script>
+</html>
